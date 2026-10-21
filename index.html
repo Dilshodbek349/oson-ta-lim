@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oson Ta’lim.uz — Admin panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="auth-screen" id="authScreen">
+    <div class="auth-decoration auth-deco-one"></div><div class="auth-decoration auth-deco-two"></div>
+    <div class="auth-card">
+      <a class="brand auth-brand" href="#"><span class="brand-logo">✦</span><span>Oson Ta’lim<span class="brand-blue">.uz</span><small>O‘qish oson. Kelajak yorqin!</small></span></a>
+      <div class="auth-welcome"><span class="section-kicker">TA’LIM IMKONIYATLARI BIR JOYDA</span><h1 id="authTitle">Xush kelibsiz!</h1><p id="authSubtitle">Davom etish uchun hisobingizga kiring yoki ro‘yxatdan o‘ting.</p></div>
+      <div class="auth-tabs"><button type="button" class="auth-tab active" data-tab="login">Kirish</button><button type="button" class="auth-tab" data-tab="register">Ro‘yxatdan o‘tish</button><button type="button" class="auth-tab" data-tab="admin">Admin</button></div>
+      <form id="loginForm" class="auth-form"><label>Telefon yoki email<input id="loginIdentity" required autocomplete="username" placeholder="Telefon yoki email"></label><label>Parol<input id="loginPassword" type="password" required autocomplete="current-password" placeholder="Parolingiz"></label><button class="auth-submit" type="submit">Hisobga kirish →</button><p class="auth-message" id="loginMessage" aria-live="polite"></p></form>
+      <form id="registerForm" class="auth-form" hidden><label>Ism va familiya<input id="registerName" required placeholder="Ism va familiya" autocomplete="name"></label><label>Telefon yoki email<input id="registerIdentity" required placeholder="Telefon yoki email" autocomplete="username"></label><label>Parol (kamida 6 belgi)<input id="registerPassword" type="password" minlength="6" required placeholder="Yangi parol" autocomplete="new-password"></label><label>Parolni qayta kiriting<input id="registerPassword2" type="password" minlength="6" required placeholder="Parolni takrorlang" autocomplete="new-password"></label><button class="auth-submit" type="submit">Ro‘yxatdan o‘tish →</button><p class="auth-message" id="registerMessage" aria-live="polite"></p></form>
+      <form id="adminForm" class="auth-form" hidden><div class="admin-security-note">🔐 Faqat administrator uchun. Login kodi va parol talab qilinadi.</div><label>Admin kodi<input id="adminCode" required autocomplete="username" placeholder="Admin kodi"></label><label>Admin paroli<input id="adminPass" type="password" required autocomplete="current-password" placeholder="Admin paroli"></label><button class="auth-submit" type="submit">Admin panelga kirish →</button><p class="auth-message" id="adminMessage" aria-live="polite"></p><small class="demo-credentials">Demo kirish: kod <b>ADMIN17</b> · parol <b>Kelajak17!</b></small></form>
+      <p class="auth-footnote">Demo versiya: hisoblar ushbu brauzerda saqlanadi. Haqiqiy foydalanuvchi xavfsizligi uchun serverli autentifikatsiya kerak.</p>
+    </div>
+    <div class="auth-side-copy"><span>✦</span><h2>Bilim sari<br>yangi qadam.</h2><p>O‘quv markazlari, maxsus pedagoglar va ta’lim yangiliklari — barchasi bir platformada.</p><div class="auth-side-tags"><b>O‘rganing</b><b>Taqqoslang</b><b>Rivojlaning</b></div></div>
+  </div>
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#home"><span class="brand-logo">✦</span><span>Oson Ta’lim<span class="brand-blue">.uz</span><small>O‘qish oson. Kelajak yorqin!</small></span></a>
+    <div class="nav-label">ASOSIY MENYU</div>
+    <nav class="side-nav">
+      <a class="active" href="#home"><span>⌂</span>Bosh sahifa</a>
+      <a href="#statistics"><span>▥</span>Statistika</a>
+      <a href="#centers"><span>▦</span>O‘quv markazlari</a>
+      <a href="#inclusive"><span>♡</span>Inklyuziv ta’lim</a>
+      <a href="#news"><span>▤</span>Yangiliklar</a>
+      <a href="#users"><span>♙</span>Foydalanuvchilar</a>
+      <a href="#requests"><span>✉</span>Murojaatlar</a>
+      <a href="#settings"><span>⚙</span>Sozlamalar</a>
+      <a href="#kelajakSync"><span>↗</span>Kelajak bilan ulash</a>
+    </nav>
+    <div class="nav-label admin-label">ADMIN PANEL</div>
+    <nav class="side-nav">
+      <a href="#centers"><span>▣</span>Markazlar boshqaruvi</a>
+      <a href="#inclusive"><span>♧</span>Mutaxassislar boshqaruvi</a>
+      <a href="#news"><span>▤</span>Yangiliklar boshqaruvi</a>
+      <a href="#users"><span>♙</span>Foydalanuvchilar</a>
+      <a href="#statistics"><span>▥</span>Hisobotlar</a>
+      <a href="#" id="logoutBtn"><span>⇥</span>Chiqish</a>
+    </nav>
+    <div class="sidebar-promo"><span class="promo-cap">🎓</span><b>Ta’lim bilan<br>yangi imkoniyatlarga!</b><p>Bilim sari birga qadam tashlaymiz.</p></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button id="menuBtn" class="icon-button" aria-label="Menyuni ochish">☰</button>
+      <label class="global-search">⌕ <input id="globalSearch" placeholder="Markaz, fan yoki tuman bo‘yicha qidiring..."></label>
+      <div class="top-actions"><button class="icon-button notification" id="notificationBtn" aria-label="Bildirishnomalar">♧<i>3</i></button><div class="admin-profile"><span class="admin-avatar">A</span><span><b>Admin</b><small>Administrator</small></span><span>⌄</span></div></div>
+    </header>
+
+    <section class="hero-banner" id="home">
+      <div class="hero-shapes"></div>
+      <div class="hero-content"><span class="hero-kicker">TA’LIM IMKONIYATLARI BIR JOYDA</span><h1>Oson Ta’lim<span>.uz</span></h1><h2>Toshkentda o‘quv markazlarini topish va tanlash uchun yagona qulay platforma</h2><div class="hero-buttons"><a href="#centers" class="hero-btn bright">＋ Yangi markaz qo‘shish</a><a href="#statistics" class="hero-btn outline">Platformani ko‘rish ↗</a></div></div>
+      <div class="hero-students"><div class="student-circle">📚</div><div class="student-bubble">O‘qish oson,<br>kelajak yorqin!</div><div class="hero-city">TOSHKENT<br><b>TA’LIM MARKAZI</b></div></div>
+      <div class="hero-spark spark-one">✦</div><div class="hero-spark spark-two">✧</div>
+    </section>
+
+    <section id="statistics" class="stats-section">
+      <div class="stats-heading"><div><span class="section-kicker">PLATFORMA KO‘RSATKICHLARI</span><h2>Ta’lim statistikasi</h2></div><p>Asosiy ko‘rsatkichlar bir joyda</p></div>
+      <div class="stats-grid">
+      <article class="stat-card stat-purple"><div class="stat-icon">▤</div><strong>11 210</strong><p>Tashkilotlar umumiy soni</p><small>Namunaviy ko‘rsatkich</small></article>
+      <article class="stat-card stat-cyan"><div class="stat-icon">🎓</div><strong>55 877</strong><p>Tashkilotlardagi mavjud to‘garaklar soni</p><small>Namunaviy ko‘rsatkich</small></article>
+      <article class="stat-card stat-yellow"><div class="stat-icon">🎒</div><strong>288 811</strong><p>To‘garaklar uchun kelib tushgan arizalar soni</p><small>Namunaviy ko‘rsatkich</small></article>
+      <article class="stat-card stat-pink"><div class="stat-icon">♟</div><strong>102 161</strong><p>Uzaytirilgan kun guruhlaridagi o‘quvchilar soni</p><small>Namunaviy ko‘rsatkich</small></article>
+      <article class="stat-card stat-green" id="users"><div class="stat-icon">♧</div><strong id="userCount">36 245</strong><p>Foydalanuvchilar soni</p><small>Demo ko‘rsatkich</small></article>
+      <article class="stat-card stat-rose"><div class="stat-icon">♡</div><strong>1 248</strong><p>Inklyuziv ta’lim mutaxassislari</p><small>Demo ko‘rsatkich</small></article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel" id="news"><div class="panel-heading"><div class="panel-title"><span class="panel-icon purple-icon">◈</span><h2>Yangiliklar</h2></div><button class="view-all" data-scroll="newsManager">Barchasini ko‘rish →</button></div><div id="newsPreview" class="news-list">
+        <div class="news-row"><div class="news-thumb thumb-blue">💻</div><div class="news-text"><small>20-oktyabr 2026</small><b>Toshkentda yangi IT to‘garaklar tarmog‘i ochildi</b></div><span class="round-arrow">→</span></div>
+        <div class="news-row"><div class="news-thumb thumb-orange">📚</div><div class="news-text"><small>18-oktyabr 2026</small><b>Olimpiadaga tayyorlov kurslariga ro‘yxatga olish boshlandi</b></div><span class="round-arrow">→</span></div>
+        <div class="news-row"><div class="news-thumb thumb-green">♡</div><div class="news-text"><small>15-oktyabr 2026</small><b>Inklyuziv ta’lim bo‘yicha seminar o‘tkazildi</b></div><span class="round-arrow">→</span></div>
+      </div></article>
+
+      <article class="panel" id="centers"><div class="panel-heading"><div class="panel-title"><span class="panel-icon blue-icon">▣</span><h2>O‘quv markazlari</h2></div><button class="view-all" data-scroll="centerManager">Barchasini ko‘rish →</button></div><div id="centerPreview" class="mini-list">
+        <div class="mini-row"><div class="building-thumb b1">⌂</div><div class="mini-info"><b>Kelajak ta’lim markazi</b><div class="tags"><span>Matematika</span><span>Ingliz tili</span><span>IT</span></div><small>📍 Yunusobod tumani</small></div><span class="rating">★ 4.8</span></div>
+        <div class="mini-row"><div class="building-thumb b2">⌂</div><div class="mini-info"><b>Ilm-Ziyo markazi</b><div class="tags"><span>Kimyo</span><span>Biologiya</span></div><small>📍 Chilonzor tumani</small></div><span class="rating">★ 4.6</span></div>
+        <div class="mini-row"><div class="building-thumb b3">⌂</div><div class="mini-info"><b>Global Education</b><div class="tags"><span>Ingliz tili</span><span>Robototexnika</span></div><small>📍 Yakkasaroy tumani</small></div><span class="rating">★ 4.7</span></div>
+      </div></article>
+
+      <article class="panel" id="inclusive"><div class="panel-heading"><div class="panel-title"><span class="panel-icon pink-icon">♡</span><h2>Inklyuziv ta’lim mutaxassislari</h2></div><button class="view-all" data-scroll="specialistManager">Barchasini ko‘rish →</button></div><div id="specialistPreview" class="specialist-list">
+        <div class="specialist-row"><div class="person-photo person-one">MK</div><div class="person-info"><b>Mavluda Karimova</b><span>Logoped</span><small>📍 Yunusobod tumani</small></div><span class="specialist-tag">Nutq rivoji</span></div>
+        <div class="specialist-row"><div class="person-photo person-two">JR</div><div class="person-info"><b>Jasur Rahimov</b><span>Defektolog</span><small>📍 Chilonzor tumani</small></div><span class="specialist-tag green-tag">Rivojlanish</span></div>
+        <div class="specialist-row"><div class="person-photo person-three">DI</div><div class="person-info"><b>Dilnoza Ismoilova</b><span>Maxsus pedagog</span><small>📍 Mirzo Ulug‘bek tumani</small></div><span class="specialist-tag rose-tag">Inklyuziya</span></div>
+      </div></article>
+    </section>
+
+    <section class="management" id="centerManager">
+      <div class="section-title"><div><span class="section-kicker">ADMINISTRATOR UCHUN</span><h2>Markazlar boshqaruvi</h2></div><button class="action-btn" id="showCenterForm">＋ Markaz qo‘shish</button></div>
+      <form class="manage-form" id="centerForm" hidden><input id="centerName" required placeholder="Markaz nomi"><input id="centerSubject" required placeholder="Yo‘nalishlar"><input id="centerDistrict" required placeholder="Tuman"><button class="action-btn" type="submit">Saqlash</button></form>
+      <div class="table-wrap"><table><thead><tr><th>Markaz nomi</th><th>Yo‘nalish</th><th>Tuman</th><th>Holati</th><th>Amal</th></tr></thead><tbody id="centerTable"><tr><td>Kelajak ta’lim markazi</td><td>Matematika, Ingliz tili, IT</td><td>Yunusobod</td><td><span class="status">Namuna</span></td><td>—</td></tr><tr><td>Ilm-Ziyo markazi</td><td>Kimyo, Biologiya</td><td>Chilonzor</td><td><span class="status">Namuna</span></td><td>—</td></tr><tr><td>Global Education</td><td>Ingliz tili, Robototexnika</td><td>Yakkasaroy</td><td><span class="status">Namuna</span></td><td>—</td></tr></tbody></table></div>
+    </section>
+
+    <section class="management" id="specialistManager">
+      <div class="section-title"><div><span class="section-kicker">INKLYUZIV TA’LIM</span><h2>Mutaxassislar boshqaruvi</h2></div><button class="action-btn" id="showSpecialistForm">＋ Mutaxassis qo‘shish</button></div>
+      <form class="manage-form" id="specialistForm" hidden><input id="specialistName" required placeholder="Ism va familiya"><select id="specialistRole"><option>Logoped</option><option>Defektolog</option><option>Maxsus pedagog</option></select><input id="specialistArea" required placeholder="Tuman / yo‘nalish"><button class="action-btn" type="submit">Saqlash</button></form>
+      <div class="table-wrap"><table><thead><tr><th>Mutaxassis</th><th>Yo‘nalish</th><th>Hudud</th><th>Holati</th><th>Amal</th></tr></thead><tbody id="specialistTable"><tr><td>Mavluda Karimova</td><td>Logoped</td><td>Yunusobod</td><td><span class="status">Namuna</span></td><td>—</td></tr><tr><td>Jasur Rahimov</td><td>Defektolog</td><td>Chilonzor</td><td><span class="status">Namuna</span></td><td>—</td></tr><tr><td>Dilnoza Ismoilova</td><td>Maxsus pedagog</td><td>Mirzo Ulug‘bek</td><td><span class="status">Namuna</span></td><td>—</td></tr></tbody></table></div>
+    </section>
+
+    <section class="management" id="newsManager">
+      <div class="section-title"><div><span class="section-kicker">E’LONLAR</span><h2>Yangiliklarni boshqarish</h2></div><button class="action-btn" id="showNewsForm">＋ Yangilik qo‘shish</button></div>
+      <form class="manage-form" id="newsForm" hidden><input id="newNewsTitle" required placeholder="Yangilik sarlavhasi"><input id="newNewsDate" placeholder="Sana (ixtiyoriy)"><textarea id="newNewsText" required placeholder="Qisqacha ma’lumot"></textarea><button class="action-btn" type="submit">Saqlash</button></form>
+      <div id="newsTable" class="admin-news-table"><p>Yangiliklar ro‘yxati yuqoridagi panelda ko‘rsatilgan.</p></div>
+    </section>
+
+    <section class="management" id="requests">
+      <div class="section-title"><div><span class="section-kicker">FOYDALANUVCHI ALOQASI</span><h2>Murojaatlar</h2></div><span class="status">Demo</span></div>
+      <div class="request-empty"><span>✉</span><div><b>Hozircha yangi murojaatlar yo‘q</b><p>Bu prototipda server orqali murojaat qabul qilish sozlanmagan.</p></div></div>
+    </section>
+
+
+    <section class="management" id="kelajakSync">
+      <div class="section-title"><div><span class="section-kicker">TASHQI PLATFORMAGA ULANISH</span><h2>Kelajak markazi bilan sinxronizatsiya</h2></div><a class="action-btn" href="https://kelajak.uzedu.uz/#/home" target="_blank" rel="noopener noreferrer">Rasmiy sayt ↗</a></div>
+      <div class="sync-card"><div class="sync-logo">K</div><div class="sync-copy"><b>Kelajak markazi</b><p>Rasmiy saytni ochish va havolani platformada saqlash mumkin. Avtomatik ma’lumot almashish uchun Kelajak markazi tomonidan taqdim etilgan API yoki ruxsatli integratsiya kerak.</p><span class="sync-status">● Havola tayyor · API ulanishi sozlanmagan</span></div><button class="action-btn" id="saveKelajakLink" type="button">Havolani saqlash</button></div>
+      <p class="sync-note" id="syncMessage">Rasmiy manba: https://kelajak.uzedu.uz/#/home</p>
+    </section>
+
+    <section class="management" id="settings">
+      <div class="section-title"><div><span class="section-kicker">PLATFORMA</span><h2>Sozlamalar</h2></div></div>
+      <div class="settings-card"><label>Sayt nomi<input id="siteNameInput" value="Oson Ta’lim.uz"></label><label>Aloqa raqami<input id="phoneInput" value="904959597"></label><button class="action-btn" id="saveSettings">Sozlamalarni saqlash</button><span id="settingsMessage"></span></div>
+    </section>
+
+    <footer class="site-footer" id="about">
+      <div class="footer-brand"><a class="brand" href="#home"><span class="brand-logo">✦</span><span>Oson Ta’lim<span class="brand-blue">.uz</span><small>O‘qish oson. Kelajak yorqin!</small></span></a><p>Toshkentda o‘quv markazlarini topish, taqqoslash va tanlash uchun qulay platforma.</p><div class="socials"><span>➤</span><span>◎</span><span>▶</span><span>f</span></div></div>
+      <div class="footer-about"><h3>Biz haqimizda</h3><p>Ushbu loyiha <strong>Toshkent tumani 17-maktab o‘quvchilari</strong> tomonidan tayyorlangan.</p><small>Ta’lim imkoniyatlarini bir joyga jamlash va foydalanuvchilarga qulaylik yaratish — asosiy maqsadimiz.</small></div>
+      <div class="footer-contact"><h3>☎ Aloqa</h3><a href="tel:904959597" class="phone-number">904 959 597</a><p>Savol va takliflar uchun ushbu raqamga murojaat qiling.</p></div>
+      <div class="footer-links"><h3>Tezkor havolalar</h3><a href="#home">Bosh sahifa</a><a href="#centers">O‘quv markazlari</a><a href="#inclusive">Inklyuziv ta’lim</a><a href="#news">Yangiliklar</a><a href="https://kelajak.uzedu.uz/#/home" target="_blank" rel="noopener noreferrer">Kelajak markazi ↗</a></div>
+      <div class="footer-bottom">© 2026 Oson Ta’lim.uz · Demo admin panel</div>
+    </footer>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
